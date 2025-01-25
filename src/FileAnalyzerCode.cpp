@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <stack>
 
 FileAnalyzerCode::FileAnalyzerCode(const std::string& filename)
     : FileAnalyzerFile(filename, allowed_extensions) {}
@@ -25,5 +26,33 @@ uint32_t FileAnalyzerCode::get_lines() const {
 }
 
 bool FileAnalyzerCode::check_parens() const {
-  return false;
+  std::stack<int> s;
+
+  for (int i = 0; i < file_size(); i++) {
+    switch (contents_[i]) {
+      case '(':
+        s.push(0);
+        break;
+      case ')':
+        if (s.top() != 0) return false;
+        s.pop();
+        break;
+      case '[':
+        s.push(1);
+        break;
+      case ']':
+        if (s.top() != 1) return false;
+        s.pop();
+        break;
+      case '{':
+        s.push(2);
+        break;
+      case '}':
+        if (s.top() != 2) return false;
+        s.pop();
+        break;
+    }
+  }
+  
+  return s.empty();
 }

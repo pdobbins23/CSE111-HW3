@@ -8,3 +8,4 @@
 #include "src/FileAnalyzerCsv.h"
 #include "src/FileAnalyzerWav.h"
 #include "src/FileAnalyzerCode.h"
+#include "src/FileAnalyzerText.h"

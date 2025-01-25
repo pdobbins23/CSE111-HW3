@@ -88,15 +88,27 @@ int main(int argc, char* argv[]) {
   } else if (code_get_lines) {
     std::cout << FileAnalyzerCode(filename).get_lines() << std::endl;
   } else if (code_check_parens) {
-    std::cout << std::boolalpha << FileAnalyzerCode(filename).check_parens() << std::endl;
+    std::cout << FileAnalyzerCode(filename).check_parens() << std::endl;
   } else if (text_get_most_common) {
-    std::cerr << "Not implemented" << std::endl; // TODO
+    auto most_common = FileAnalyzerText(filename).get_most_common();
+
+    for (auto word : most_common)
+      std::cout << word << std::endl;
   } else if (text_get_least_common) {
-    std::cerr << "Not implemented" << std::endl; // TODO
+    auto least_common = FileAnalyzerText(filename).get_least_common();
+
+    for (auto word : least_common)
+      std::cout << word << std::endl;
   } else if (text_get_letter_count) {
-    std::cerr << "Not implemented" << std::endl; // TODO
+    auto letters = FileAnalyzerText(filename).get_letter_count();
+
+    for (auto p : letters)
+      std::cout << p.first << ": " << p.second << std::endl;
   } else if (text_get_letter_count_sorted) {
-    std::cerr << "Not implemented" << std::endl; // TODO
+    auto letters = FileAnalyzerText(filename).get_letter_count_sorted();
+
+    for (auto p : letters)
+      std::cout << p.first << ": " << p.second << std::endl;
   }
   return 0;
 }

@@ -17,6 +17,7 @@ add_executable(${PROJECT_NAME}
     src/FileAnalyzerCsv.cpp
     src/FileAnalyzerWav.cpp
     src/FileAnalyzerCode.cpp
+    src/FileAnalyzerText.cpp
 )
 
 include(FetchContent)

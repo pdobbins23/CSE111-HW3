@@ -23,7 +23,7 @@ uint32_t FileAnalyzerCsv::cols() const {
 
   uint32_t cols = 1;
 
-  for (int i = 0;; i++) {
+  for (int i = 0; i < file_size(); i++) {
     if (contents_[i] == ',') cols++;
     if (contents_[i] == '\n') break;
   }
@@ -32,12 +32,14 @@ uint32_t FileAnalyzerCsv::cols() const {
 }
 
 bool FileAnalyzerCsv::verify_dimensions() const {
+  if (file_size() == 0) return true;
+
   bool valid = true;
 
   uint32_t header_cols = cols();
-  uint32_t cols = 0;
+  uint32_t cols = 1;
 
-  for (int i = 0;; i++) {
+  for (int i = 0; i < file_size(); i++) {
     if (contents_[i] == ',') cols++;
     if (contents_[i] == '\n') {
       if (cols != header_cols) {
@@ -45,7 +47,7 @@ bool FileAnalyzerCsv::verify_dimensions() const {
         break;
       }
 
-      cols = 0;
+      cols = 1;
     }
   }
 
