@@ -93,12 +93,16 @@ int main(int argc, char* argv[]) {
     auto most_common = FileAnalyzerText(filename).get_most_common();
 
     for (auto word : most_common)
-      std::cout << word << std::endl;
+      std::cout << word << " ";
+
+    std::cout << std::endl;
   } else if (text_get_least_common) {
     auto least_common = FileAnalyzerText(filename).get_least_common();
 
     for (auto word : least_common)
-      std::cout << word << std::endl;
+      std::cout << word << " ";
+
+    std::cout << std::endl;
   } else if (text_get_letter_count) {
     auto letters = FileAnalyzerText(filename).get_letter_count();
 

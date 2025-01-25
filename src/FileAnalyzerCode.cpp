@@ -34,21 +34,21 @@ bool FileAnalyzerCode::check_parens() const {
         s.push(0);
         break;
       case ')':
-        if (s.top() != 0) return false;
+        if (s.empty() || s.top() != 0) return false;
         s.pop();
         break;
       case '[':
         s.push(1);
         break;
       case ']':
-        if (s.top() != 1) return false;
+        if (s.empty() || s.top() != 1) return false;
         s.pop();
         break;
       case '{':
         s.push(2);
         break;
       case '}':
-        if (s.top() != 2) return false;
+        if (s.empty() || s.top() != 2) return false;
         s.pop();
         break;
     }
